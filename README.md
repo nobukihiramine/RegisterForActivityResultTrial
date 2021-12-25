@@ -8,6 +8,15 @@ registerForActivityResult()を用いて、権限リクエストする方法の�
 - 「許可しない」後「スタート」ボタンの押下⇒「権限リクエストの理由説明」ダイアログ⇒「権限リクエスト」ダイアログ
 - 「今後表示しないをチェックして許可しない」後「スタート」ボタンの押下⇒「詳細設定画面への誘導」ダイアログ
 
+## 関連
+ActivityCompat#requestPermissions()を用いて、権限リクエストする方法は、[ActivityCompatRequestPermissionsTrial](https://github.com/nobukihiramine/ActivityCompatRequestPermissionsTrial)
+
+補足）  
+2021/12/1 現在、Fragment#requestPermissions()は、deprecatedとなっているが、ActivityCompat#requestPermissions()は、deprecatedとはなっていないので、「ActivityCompat#requestPermissions()を用いて、権限リクエストする方法」「registerForActivityResult()を用いて、権限リクエストする方法」はどちらも有効な方法。
+２つの方法に動作の違いはない。実装上も大きな違いはないが、  
+「ActivityCompat#requestPermissions()を用いて、権限リクエストする方法」は、クラスメンバーに、リクエストコード定義が必要。
+「registerForActivityResult()を用いて、権限リクエストする方法」は、クラスメンバーに、リクエストランチャー定義が必要。
+
 ## Screenshots : スクリーンショット
 <img src="images/screenshot_anim01.gif" width="240" alt="Screenshot"/>
 
