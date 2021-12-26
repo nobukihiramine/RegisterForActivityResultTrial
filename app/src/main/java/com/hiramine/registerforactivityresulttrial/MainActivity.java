@@ -24,12 +24,12 @@ https://developer.android.com/training/permissions/requesting?hl
 public class MainActivity extends AppCompatActivity
 {
 	// ※ registerForActivityResult()は、アプリ開始前に実施する必要があり、メンバーとして定義する。（アプリ開始後にコールすると、「IllegalStateException」が発生する）
+	// ランチャーの作成
+	private final ActivityResultLauncher<String> m_launcher              = registerForActivityResult( new ActivityResultContracts.RequestPermission(),
+																									  result -> onRequestPermissionsResult( result, false ) );
 	// ランチャーの作成（説明ダイアログあり版）
-	private ActivityResultLauncher<String> m_launcherWithRationale    = registerForActivityResult( new ActivityResultContracts.RequestPermission(),
-																								   result -> onRequestPermissionsResult( result, true ) );
-	// ランチャーの作成（説明ダイアログなし版）
-	private ActivityResultLauncher<String> m_launcherWithoutRationale = registerForActivityResult( new ActivityResultContracts.RequestPermission(),
-																								   result -> onRequestPermissionsResult( result, false ) );
+	private final ActivityResultLauncher<String> m_launcherWithRationale = registerForActivityResult( new ActivityResultContracts.RequestPermission(),
+																									  result -> onRequestPermissionsResult( result, true ) );
 
 	@Override
 	protected void onCreate( Bundle savedInstanceState )
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity
 			// 　これまでに「権限リクエストダイアログ」を表示したことがあり、その際に「許可しない」を選択し、かつ、「今後は確認しない」を「チェックした」場合）
 
 			// 「権限リクエストダイアログ」を表示
-			m_launcherWithoutRationale.launch( Manifest.permission.CAMERA );
+			m_launcher.launch( Manifest.permission.CAMERA );
 		}
 
 		// 「権限リクエストダイアログ」の結果は、onRequestPermissionsResult()で受け取る。
